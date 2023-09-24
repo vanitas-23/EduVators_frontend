@@ -10,7 +10,9 @@ import ViewTeacher from '../pages/ViewTeacher/ViewTeacher.jsx'
 import CreateClassroom from '../pages/CreateClassroom.jsx/CreateClassroom.jsx'
 import AssignStudents from '../pages/AssignStudents/AssignStudents.jsx'
 import AssignPeriod from '../pages/AssignPeriods/AssignPeriod.jsx'
-
+import Registrationfreelancer from '../pages/freelancer/freelancer.jsx'
+import DashboardPage from '../pages/Landing/DashBoard.jsx'
+import Accout from '../pages/Landing/Account.jsx'
 const Home = () => {
   return (
     <>
@@ -18,6 +20,9 @@ const Home = () => {
         <Route path="/" element={<Landing/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/account" element={<Accout/>}/>
+        <Route path="/freelancer" element={<Registrationfreelancer/>}/>
+        <Route path="/dashboard" element={<DashboardPage/>}/>
         <Route path="/AssignTeacher" element={<AssignTeacher/>}/>
         <Route path="/ViewStudent" element={<ViewStudent/>}/>
         <Route path="/ViewTeachers" element={<ViewTeacher/>}/>

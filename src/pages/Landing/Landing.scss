@@ -1,9 +1,17 @@
 *{
     margin: 0;
 }
-body{
-    background-image: linear-gradient(to left, rgba(31, 222, 50, 0), rgb(32, 45, 120));
+
+@keyframes changeBackground {
+  0% { background-image: linear-gradient(to left, rgba(31, 222, 50, 0), rgb(64, 213, 66)); }
+  50% { background-image: linear-gradient(to left, rgba(255, 0, 0, 0), rgb(2, 2, 52)); }
+  100% { background-image: linear-gradient(to left, rgba(31, 222, 50, 0), rgb(234, 21, 21)); }
 }
+
+body {
+  background-image: linear-gradient(to left, rgba(255, 0, 0, 0), rgb(2, 2, 52));  
+}
+
 .rightMainLanding{
     margin-top: 70px;
     height: 600px;
@@ -22,4 +30,18 @@ body{
     align-items: center;
     justify-content: center;
 
+  }
+  .dashboard {
+    display: flex;
+    align-items: center;
+    //margin-top: 10%;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 10% auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
