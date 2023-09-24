@@ -1,8 +1,11 @@
 import React, {useState} from "react";
 import "./Login.scss"
 import StickyHeader from "../CreateClassroom.jsx/Header"
+import { useDispatch } from 'react-redux';
+import {} from '../../redux/slices/authSlice';
 const Loginnew = () => {
 
+    const dispatch = useDispatch();
     // useEffect(() => {
     //     function start() {
     //         gapi.client.init({
@@ -17,6 +20,7 @@ const Loginnew = () => {
 
     const popup = () => {
         showPopup("login-popup");
+        dispatch(loginUser())
     }
 
     const [inputVisible, setInputVisible] = useState(false);

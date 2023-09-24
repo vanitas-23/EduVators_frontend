@@ -1,7 +1,12 @@
 import './freelancer.scss';
+// import './loginnew.css'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {createUser} from "../../redux/slices/authSlice"
 
 function Registrationfreelancer() {
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     role: 'freelancer',
@@ -39,9 +44,10 @@ function Registrationfreelancer() {
   const onSubmitHandler = (event) => {
     event.preventDefault()
     console.log(formData)
+    dispatch(createUser(formData));
   }
   return (
-    <div className="App">
+    <div className="App" id='App'>
       <form onSubmit={onSubmitHandler}>
         
         <div className="form-group">
@@ -117,10 +123,7 @@ function Registrationfreelancer() {
           </div>)}
         </div> */}
 
-        <div className="form-group">
-          <label htmlFor="file" className="form-label">Upload Your Document</label>
-          <input className="form-control" type='file' name="file" placeholder='' onChange={onChangeHandler}  value={formData.file} />
-        </div>
+        
         
         <div className="form-group">
           <button className="btn" type="submit" >Submit</button>

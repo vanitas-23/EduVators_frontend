@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import "./CreateClassroom.scss"
 import StickyHeader from "./Header";
+import { useDispatch } from 'react-redux';
+import {createStudent} from '../../redux/slices/studentSlice'
 
 const CreateClassroom = () => {
+  const dispatch = useDispatch();
   const [classValue, setClassValue] = useState('');
   const [Range, setRange] = useState({ start: 0, end: 0 });
   const [submitted, setSubmitted] = useState(false);
   const [rangeSubmitted, setRangeSubmitted] = useState(false);
   const [startValue, setStartValue] = useState(0); 
   const [endValue, setEndValue] = useState(0); 
-  const [req, setReq] = useState({ class: '', range: { start: 0, end: 0 }, courses: [] });
+  const [req, setReq] = useState({ batch: '', range: { start: 0, end: 0 }, courses: [] });
   const [subjects, setSubjects] = useState([]);
   const [newSubject, setNewSubject] = useState('');
 
@@ -44,7 +47,7 @@ const CreateClassroom = () => {
     if (classValue) {
       setSubmitted(true);
 
-      setReq(prevReq => ({ ...prevReq, class: classValue }));
+      setReq(prevReq => ({ ...prevReq, batch: classValue }));
     }
     else {
       alert('Please provide input');
@@ -66,8 +69,9 @@ const CreateClassroom = () => {
   }
 
   const handleSubmitCourses = () => {
-    setReq(prevReq => ({ ...prevReq, courses: subjects }));
+    setReq(prevReq => ({ ...prevReq, courses: subjects, school_name: "hdfdsh" }));
     console.log(req);
+    dispatch(createStudent(req));
   }
 
   return (
