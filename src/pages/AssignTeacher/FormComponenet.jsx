@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import "./Assignteacher.scss";
+import { useDispatch } from 'react-redux';
+import {createTeacher} from '../../redux/slices/teacherSlice';
 const FormComponent = () => {
-  const [formFields, setFormFields] = useState([{ name: "", email: "" ,id:""}]);
+  const dispatch = useDispatch();
+  const [formFields, setFormFields] = useState([{ name: "", email: "" ,uid:"",school_name:"jkdghjgfx",batches:[1,2,3],subject: "hvghvxbgvh"}]);
 
   const handleFormChange = (event, index) => {
     let data = [...formFields];
@@ -15,11 +18,12 @@ const FormComponent = () => {
       alert("Please enter a name.");
     } else if (formFields.some((field) => field.email === "")) {
       alert("Please enter a email.");}
-      else if(formFields.some((field) => field.id ==="")){
+      else if(formFields.some((field) => field.uid ==="")){
 alert("Please enter the id.");
       }
      else {
       console.log(formFields);
+      dispatch(createTeacher(formFields));
     }
   };
 
@@ -29,14 +33,14 @@ alert("Please enter the id.");
         alert("Please enter a name.");
       } else if (formFields.some((field) => field.email === "")) {
         alert("Please enter a email.");}
-        else if (formFields.some((field) => field.id === "")) {
+        else if (formFields.some((field) => field.uid === "")) {
           alert("Please enter an id.");}
     else {
       //setShowPopup(false); 
       let obj={
         name:'',
         email:'',
-        id:''
+        uid:'',school_name:"jkdghjgfx",batches:[1,2,3],subject: "hvghvxbgvh"
       }
       setFormFields([...formFields,obj]);
     }
@@ -76,11 +80,11 @@ alert("Please enter the id.");
               required
             />
             <input
-              name="id"
+              name="uid"
               
               placeholder="id"
               onChange={(event) => handleFormChange(event, index)}
-              value={form.id}
+              value={form.uid}
               required
             />
             <button type="button" onClick={() => removeField(index)}>

@@ -1,9 +1,17 @@
 import './Signup.scss';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import StickyHeader from "../CreateClassroom.jsx/Header";
+import {createUser} from "../../redux/slices/authSlice";
+
 function Signup() {
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
+    role: "admin",
     // username: 'default',
     // email: 'default@gmail.com',
     // address: 'default',
@@ -35,21 +43,24 @@ function Signup() {
     }
   }
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async(event) => {
     event.preventDefault()
-    console.log(formData)
+
+    console.log("Formmm  ",formData)
+    dispatch(createUser(formData));
+    navigate('/login');
   }
   return (
     <div className="App">
     <StickyHeader/>
       <form onSubmit={onSubmitHandler}>
         <div className="form-group">
-          <label htmlFor="schoolname" className="form-label">School Name</label>
-          <input className="form-control" type='text' name="schoolname" placeholder='Enter Your School Name' onChange={onChangeHandler} value={formData.schoolname} />
+          <label htmlFor="school_name" className="form-label">School Name</label>
+          <input className="form-control" type='text' name="school_name" placeholder='Enter Your School Name' onChange={onChangeHandler} value={formData.schoolname} />
         </div>
         <div className="form-group">
-          <label htmlFor="schoolid" className="form-label">School Id</label>
-          <input className="form-control" type='number' name="schoolid" placeholder='Enter Your School Id' onChange={onChangeHandler} value={formData.schoolid} />
+          <label htmlFor="sid" className="form-label">School Id</label>
+          <input className="form-control" type='text' name="sid" placeholder='Enter Your School Id' onChange={onChangeHandler} value={formData.schoolid} />
         </div>
         <div className="form-group">
           <label htmlFor="email" className="form-label">School Email</label>
@@ -60,10 +71,10 @@ function Signup() {
           <input className="form-control" type='text' name="address" placeholder='Enter Your Address' onChange={onChangeHandler} value={formData.address} />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="schoolfile" className="form-label">Upload School Document</label>
-          <input className="form-control" type='file' name="schoolfile" placeholder='' onChange={onChangeHandler}  value={formData.schoolfile} />
-        </div>
+        {/* <div className="form-group">
+          <label htmlFor="files" className="form-label">Upload School Document</label>
+          <input className="form-control" type='file' name="files" placeholder='' onChange={onChangeHandler}  value={formData.schoolfile} />
+        </div> */}
         <div className="form-group">
           <label htmlFor="name" className="form-label">Name</label>
           <input className="form-control" type='text' name="name" placeholder='Enter Your Address' onChange={onChangeHandler} value={formData.name} />
@@ -90,10 +101,6 @@ function Signup() {
             <div>
               <input type="radio" name="gender" value="other" onChange={onChangeHandler} checked={formData.gender === 'other'} />
               <label htmlFor="other">Other</label>
-            </div>
-            <div>
-              <input type="radio" name="gender" value="attack_helicopter" onChange={onChangeHandler} checked={formData.gender === 'attack_helicopter'} />
-              <label htmlFor="attack_helicopter">Attack Helicopter</label>
             </div>
           </div>
         </div>
@@ -123,10 +130,10 @@ function Signup() {
           </div>)}
         </div> */}
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="file" className="form-label">Upload Your Document</label>
           <input className="form-control" type='file' name="file" placeholder='' onChange={onChangeHandler}  value={formData.file} />
-        </div>
+        </div> */}
         
         <div className="form-group">
           <button className="btn" type="submit" >Submit</button>
